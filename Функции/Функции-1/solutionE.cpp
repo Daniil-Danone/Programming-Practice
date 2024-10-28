@@ -30,11 +30,7 @@ int main () {
     int sideB = Side(b, c);
     int sideC = Side(c, a);
 
-    if (sideA + sideB == sideC) {
-        cout << "Yes";
-    } else if (sideA + sideC == sideB) {
-        cout << "Yes";
-    } else if (sideB + sideC == sideA) {
+    if (sideA + sideB == sideC || sideA + sideC == sideB || sideB + sideC == sideA) {
         cout << "Yes";
     } else {
         cout << "No";
