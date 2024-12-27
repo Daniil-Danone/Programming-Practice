@@ -4,7 +4,9 @@
 #include <sstream>
 #include <string>
 
+
 using namespace std;
+
 
 const double PI = 3.1415926535;
 const double E = 2.7182818284;
@@ -19,12 +21,14 @@ const int function_width = 12;
 const int table_line_width = (argument_width + function_width) * functions_per_row + (elements_per_row + 1);
 
 
-double function(double x, double p) {
+double math_function(double x, double p) {
     if (pow(x, 5) > pow(E, abs(p * x))) {
         return (1 - pow(atan(p * x), 4)) / (sqrt(x));
     }
+
     return log(PI + abs(p * x));
 }
+
 
 string format_number(double value, int precision, bool scientific_flag = false) {
     stringstream ss;
@@ -34,6 +38,7 @@ string format_number(double value, int precision, bool scientific_flag = false) 
     } else {
         ss << fixed << setprecision(precision) << value;
     }
+
     return ss.str();
 }
 
@@ -55,6 +60,7 @@ void print_head() {
     cout << endl;
 }
 
+
 void print_row(double row_x[], double p) {
     cout << "!";
 
@@ -70,7 +76,7 @@ void print_row(double row_x[], double p) {
             cout << string(argument_padding, ' ') << string_x << string(argument_width - argument_length - argument_padding, ' ') << "!";
 
 
-            string string_function = format_number(function(x, p), 4, true);
+            string string_function = format_number(math_function(x, p), 4, true);
             
             int function_length = string_function.length();
             int function_padding = (function_width - function_length) / 2;
@@ -91,6 +97,7 @@ void print_line() {
     }
     cout << endl;
 }
+
 
 void print_page(double p, double start_x, int page) {
     setlocale(LC_ALL, "ru_RU.UTF-8");
