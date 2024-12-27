@@ -63,18 +63,18 @@ void clearTable(Table& table) {
 }
 
 
-void printLine() {
+void print_line() {
     cout << "------------------------------------------------------------" << endl;
 }
 
 void printEnd() {
-    printLine();
+    print_line();
     cout << "Выход" << endl;
 }
 
 
 void printMenu() {
-    printLine();
+    print_line();
     cout << "Меню:" << endl;
     cout << "1. Заполнить таблицу случайно" << endl;
     cout << "2. Заполнить таблицу вручную" << endl;
@@ -85,12 +85,12 @@ void printMenu() {
 
 
 void printErrorChoice() {
-    printLine();
+    print_line();
     cout << "Некорректный выбор. Попробуйте снова." << endl;
 }
 
 void generateTable(Table& table) {
-    printLine();
+    print_line();
     for (int i = 0; i < table.rows; ++i) {
         for (int j = 0; j < table.cols; ++j) {
             table.data[i][j] = (rand() % 1000) / 10.0;
@@ -101,7 +101,7 @@ void generateTable(Table& table) {
 
 
 void fillTable(Table& table) {
-    printLine();
+    print_line();
 
     for (int i = 0; i < table.rows; ++i) {
         for (int j = 0; j < table.cols; ++j) {
@@ -115,7 +115,7 @@ void fillTable(Table& table) {
 
 
 void displayTable(const Table& table) {
-    printLine();
+    print_line();
     cout << "Таблица:" << endl;
     for (int i = 0; i < table.rows; ++i) {
         for (int j = 0; j < table.cols; ++j) {
@@ -127,7 +127,7 @@ void displayTable(const Table& table) {
 
 
 void findMinOfMaxColumns(const Table& table) {
-    printLine();
+    print_line();
 
     if (table.rows <= 0 || table.cols <= 0) {
         cout << "Ошибка: таблица пуста или некорректна." << endl;
