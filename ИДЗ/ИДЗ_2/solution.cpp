@@ -11,7 +11,7 @@ struct Table {
 };
 
 
-int inputPositiveInteger(string title) {
+int input_positive_integer(string title) {
     int integer;
     do {
         cout << title;
@@ -28,21 +28,21 @@ int inputPositiveInteger(string title) {
     return integer;
 }
 
-double inputDouble(string title) {
+double input_double(string title) {
     cout << "Введите " << title;
-    double doubleNum;
-    while (!(cin >> doubleNum)) {
+    double double_num;
+    while (!(cin >> double_num)) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Ошибка ввода. Попробуйте снова: ";
     }
-    return doubleNum;
+    return double_num;
 }
 
 
-void initTable(Table& table) {
-    table.rows = inputPositiveInteger("Введите количество строк: ");
-    table.cols = inputPositiveInteger("Введите количество столбцов: ");
+void init_table(Table& table) {
+    table.rows = input_positive_integer("Введите количество строк: ");
+    table.cols = input_positive_integer("Введите количество столбцов: ");
     table.data = new double*[table.rows];
     for (int i = 0; i < table.rows; ++i) {
         table.data[i] = new double[table.cols];
@@ -50,7 +50,7 @@ void initTable(Table& table) {
 }
 
 
-void clearTable(Table& table) {
+void clear_table(Table& table) {
     if (table.data) {
         for (int i = 0; i < table.rows; ++i) {
             delete[] table.data[i];
@@ -67,13 +67,13 @@ void print_line() {
     cout << "------------------------------------------------------------" << endl;
 }
 
-void printEnd() {
+void print_end() {
     print_line();
     cout << "Выход" << endl;
 }
 
 
-void printMenu() {
+void print_menu() {
     print_line();
     cout << "Меню:" << endl;
     cout << "1. Заполнить таблицу случайно" << endl;
@@ -84,12 +84,12 @@ void printMenu() {
 }
 
 
-void printErrorChoice() {
+void print_error_choice() {
     print_line();
     cout << "Некорректный выбор. Попробуйте снова." << endl;
 }
 
-void generateTable(Table& table) {
+void generate_table(Table& table) {
     print_line();
     for (int i = 0; i < table.rows; ++i) {
         for (int j = 0; j < table.cols; ++j) {
@@ -100,12 +100,12 @@ void generateTable(Table& table) {
 }
 
 
-void fillTable(Table& table) {
+void fill_table(Table& table) {
     print_line();
 
     for (int i = 0; i < table.rows; ++i) {
         for (int j = 0; j < table.cols; ++j) {
-            double value = inputDouble("Введите элемент (" + to_string(i + 1) + ", " + to_string(j + 1) + "): ");
+            double value = input_double("Введите элемент (" + to_string(i + 1) + ", " + to_string(j + 1) + "): ");
             table.data[i][j] = value;
         }
     }
@@ -114,7 +114,7 @@ void fillTable(Table& table) {
 }
 
 
-void displayTable(const Table& table) {
+void display_table(const Table& table) {
     print_line();
     cout << "Таблица:" << endl;
     for (int i = 0; i < table.rows; ++i) {
@@ -126,7 +126,7 @@ void displayTable(const Table& table) {
 }
 
 
-void findMinOfMaxColumns(const Table& table) {
+void find_min_max_columns(const Table& table) {
     print_line();
 
     if (table.rows <= 0 || table.cols <= 0) {
@@ -137,11 +137,11 @@ void findMinOfMaxColumns(const Table& table) {
     double result = INFINITY;
 
     for (int j = 0; j < table.cols; ++j) {
-        double maxColValue = -INFINITY;
+        double max_col_value = -INFINITY;
         for (int i = 0; i < table.rows; ++i) {
-            maxColValue = max(maxColValue, table.data[i][j]);
+            max_col_value = max(max_col_value, table.data[i][j]);
         }
-        result = min(result, maxColValue);
+        result = min(result, max_col_value);
     }
 
     cout << "Минимальный среди максимальных элементов столбцов: " << result << endl;
@@ -149,25 +149,25 @@ void findMinOfMaxColumns(const Table& table) {
 }
 
 
-void programLoop(Table& table) {
+void program_loop(Table& table) {
     int choice;
 
     do {
-        printMenu();
-        choice = inputPositiveInteger("Выберите опцию: ");
+        print_menu();
+        choice = input_positive_integer("Выберите опцию: ");
 
         if (choice == 1) {
-            generateTable(table);
+            generate_table(table);
         } else if (choice == 2) {
-            fillTable(table);
+            fill_table(table);
         } else if (choice == 3) {
-            displayTable(table);
+            display_table(table);
         } else if (choice == 4) {
-            findMinOfMaxColumns(table);
+            find_min_max_columns(table);
         } else if (choice == 5) {
-            printEnd();
+            print_end();
         } else {
-            printErrorChoice();
+            print_error_choice();
         }
     } while (choice != 5);
 }
@@ -178,11 +178,11 @@ int main() {
 
     Table table;
 
-    initTable(table);
+    init_table(table);
 
-    programLoop(table);
+    program_loop(table);
 
-    clearTable(table);
+    clear_table(table);
 
     return 0;
 }
