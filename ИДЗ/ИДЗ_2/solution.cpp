@@ -67,6 +67,7 @@ void print_line() {
     cout << "------------------------------------------------------------" << endl;
 }
 
+
 void print_end() {
     print_line();
     cout << "Выход" << endl;
@@ -88,6 +89,7 @@ void print_error_choice() {
     print_line();
     cout << "Некорректный выбор. Попробуйте снова." << endl;
 }
+
 
 void generate_table(Table& table) {
     print_line();
