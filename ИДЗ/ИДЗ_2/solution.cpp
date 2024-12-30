@@ -17,7 +17,7 @@ int input_positive_integer(string title) {
         cout << title;
         while (!(cin >> integer)) {
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cin.ignore();
             cout << "Ошибка ввода. Попробуйте снова: ";
         }
         if (integer <= 0) {
@@ -33,7 +33,7 @@ double input_double(string title) {
     double double_num;
     while (!(cin >> double_num)) {
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore();
         cout << "Ошибка ввода. Попробуйте снова: ";
     }
     return double_num;

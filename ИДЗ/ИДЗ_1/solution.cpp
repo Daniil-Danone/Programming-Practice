@@ -13,9 +13,9 @@ const double E = 2.7182818284;
 const double h = 0.025;
 const double x_start = -3.0;
 const double x_end = 1.5;
-const int functions_per_row = 4;
+const int functions_per_row = 2;
 const int elements_per_row = functions_per_row * 2;
-const int rows_per_page = 11;
+const int rows_per_page = 7;
 const int argument_width = 10;
 const int function_width = 12;
 const int table_line_width = (argument_width + function_width) * functions_per_row + (elements_per_row + 1);
@@ -68,7 +68,7 @@ void print_row(double row_x[], double p) {
         double x = row_x[i];
 
         if (x <= x_end + 1e-6) {
-            string string_x = format_number(x, 4);
+            string string_x = format_number(x, 7);
         
             int argument_length = string_x.length();
             int argument_padding = (argument_width - argument_length) / 2;
@@ -76,7 +76,7 @@ void print_row(double row_x[], double p) {
             cout << string(argument_padding, ' ') << string_x << string(argument_width - argument_length - argument_padding, ' ') << "!";
 
 
-            string string_function = format_number(math_function(x, p), 4, true);
+            string string_function = format_number(math_function(x, p), 7, true);
             
             int function_length = string_function.length();
             int function_padding = (function_width - function_length) / 2;
